@@ -55,7 +55,8 @@ public class IOCompareTest {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}});
+			}
+        });
 		
 		Tester.tests.add(new Test("Stream read"){
 			@Override
@@ -73,7 +74,8 @@ public class IOCompareTest {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}});
+			}
+        });
 
 		Tester.tests.add(new Test("Channel read"){
 
@@ -93,7 +95,8 @@ public class IOCompareTest {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}});
+			}
+        });
 	}	
 	public static void main(String[] args){
 		Tester tester = new Tester();

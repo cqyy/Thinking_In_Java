@@ -5,7 +5,7 @@ package cn.yuanye.datastructure;
  * Created by Administrator on 14-2-19.
  * Node of red-black tree
  */
-class RBTreeNode {
+public class RBTreeNode {
 
     public RBTreeNode(NodeColor color){
         this.color = color;

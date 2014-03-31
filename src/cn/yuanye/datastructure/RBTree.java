@@ -9,7 +9,7 @@ import java.util.Queue;
 public class RBTree {
     public static final RBTreeNode NIL = new RBTreeNode(NodeColor.Black);        // sentinel node.
 
-    RBTreeNode root = NIL;                                       // tree root
+    public RBTreeNode root = NIL;                                       // tree root
 
 
     /**

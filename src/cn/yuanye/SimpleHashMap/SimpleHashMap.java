@@ -126,7 +126,7 @@ public class SimpleHashMap<K,V> extends AbstractMap<K,V> {
 	
 	@Override
 	public Set<java.util.Map.Entry<K, V>> entrySet() {
-		Set<Map.Entry<K, V>> set = new HashSet<Map.Entry<K,V>>();
+		Set<Map.Entry<K, V>> set = new HashSet<>();
 		for(LinkedList<Map.Entry<K, V>> list : buckets){
 			if(list!=null){
 				Iterator<Map.Entry<K, V>> it = list.iterator();
