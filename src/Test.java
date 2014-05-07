@@ -1,26 +1,15 @@
-import java.io.*;
-import java.util.*;
-import java.util.concurrent.*;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Created by Administrator on 14-3-5.
  */
+
 public class Test {
-
-static class MyList extends AbstractList{
-    @Override
-    public Object get(int index) {
-        return null;
-    }
-
-    @Override
-    public int size() {
-        return 0;
-    }
-}
-
-    public static void main(String[] args) throws IOException, CloneNotSupportedException {
-
-
+    public static void main(String[] args) {
+        FileSystem fs = FileSystems.getDefault();
+        Path path = Paths.get("./");
     }
 }

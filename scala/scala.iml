@@ -6,16 +6,10 @@
         <option name="compilerLibraryLevel" value="Project" />
         <option name="compilerLibraryName" value="scala-compiler" />
         <option name="languageLevel" value="Scala 2.11" />
-        <option name="pluginPaths">
-          <array>
-            <option value="C:\Program Files (x86)\scala\lib\scala-compiler.jar" />
-            <option value="C:\Program Files (x86)\scala\lib\scala-library.jar" />
-          </array>
-        </option>
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />

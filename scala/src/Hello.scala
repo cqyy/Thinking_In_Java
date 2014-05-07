@@ -1,6 +1,7 @@
 /**
- * Created by Administrator on 14-3-23.
+ * Created by Kali on 14-3-23.
  */
+
 object Hello {
   def oncePerSecond(callback:() =>Unit){
     while (true){
