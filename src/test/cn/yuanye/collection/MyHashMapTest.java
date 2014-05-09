@@ -1,9 +1,9 @@
-package test.cn.yuanye.collection; 
+package test.cn.yuanye.collection;
 
 import cn.yuanye.collection.MyHashMap;
-import org.junit.Test;
-import org.junit.Before; 
 import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Map;
 

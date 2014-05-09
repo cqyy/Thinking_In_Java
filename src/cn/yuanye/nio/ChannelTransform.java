@@ -1,3 +1,5 @@
+package cn.yuanye.nio;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -8,11 +10,11 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
 /**
- * Created by Administrator on 14-3-5.
+ * Created by Kali on 14-5-8.
+ * Example of channel transform.
+ * This example transform from FileChannel to a SocketChannel
  */
-
-public class Test {
-
+public class ChannelTransform {
     private static final int PORT = 4096;
 
     private static class ChannelReadThread extends Thread{
@@ -55,5 +57,7 @@ public class Test {
         RandomAccessFile randomAccessFile = new RandomAccessFile(file,"r");
         FileChannel fileChannel = randomAccessFile.getChannel();
         fileChannel.transferTo(0,fileChannel.size(),socketChannel);
+        fileChannel.close();
+        socketChannel.close();
     }
 }

@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Thinking_in_Java.iml" filepath="$PROJECT_DIR$/Thinking_in_Java.iml" />
-      <module fileurl="file://$PROJECT_DIR$/_scala/_scala.iml" filepath="$PROJECT_DIR$/_scala/_scala.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scala/scala.iml" filepath="$PROJECT_DIR$/scala/scala.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Thinking_In_Java.iml" filepath="$PROJECT_DIR$/Thinking_In_Java.iml" />
     </modules>
   </component>
 </project>
