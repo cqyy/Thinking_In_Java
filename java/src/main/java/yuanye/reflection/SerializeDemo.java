@@ -67,7 +67,10 @@ public class SerializeDemo {
         return target;
     }
 
-    private static Element serializeVariable(Class<?> cl,Object obj,Document target,IdentityHashMap<Object,Integer> table)
+    private static Element serializeVariable(Class<?> cl,
+                                             Object obj,
+                                             Document target,
+                                             IdentityHashMap<Object,Integer> table)
             throws IllegalAccessException {
 
         if (obj == null){
