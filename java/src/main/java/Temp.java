@@ -1,5 +1,3 @@
-import org.jdom.Document;
-
 /**
  * Created by Kali on 14-5-13.
  */
@@ -23,7 +21,10 @@ public class Temp {
 
 
     public static void main(String[] args) {
-        Document doc = new Document();
+        int i = 1;
+        Object o = i;
+        System.out.println(o.getClass());
+
     }
 }
 
