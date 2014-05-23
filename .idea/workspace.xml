@@ -2,111 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="371071fc-529c-49a4-a117-eeb71b19824f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/reflection/MethodExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/reflection/SerializeDemo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/src/main/java/Temp.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scala/src/factory.sc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/java.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/pom.xml" />
-      <change type="DELETED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\JoyOfHex.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\Test.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\test\cn\yuanye\datastructure\RBTreeTest.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scala/scala.iml" afterPath="$PROJECT_DIR$/scala/scala.iml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Thinking_In_Java.iml" afterPath="$PROJECT_DIR$/Thinking_In_Java.iml" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\Annotation\PassworUnti.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/Annotation/PassworUnti.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\Annotation\UseCase.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/Annotation/UseCase.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\Annotation\UseCashTracker.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/Annotation/UseCashTracker.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\Arrays\ArraysPractice.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/Arrays/ArraysPractice.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\DynamicProxy\Client.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/DynamicProxy/Client.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\DynamicProxy\ConnectionPoolProxyHandler.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/DynamicProxy/ConnectionPoolProxyHandler.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\DynamicProxy\DatabaseConnectionPool.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/DynamicProxy/DatabaseConnectionPool.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\DynamicProxy\OracleConnectionPool.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/DynamicProxy/OracleConnectionPool.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\DynamicProxy\SQLConnectionPool.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/DynamicProxy/SQLConnectionPool.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\HashCode\CountedString.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/HashCode/CountedString.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\ImmutableClass\ImmutableClass.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/ImmutableClass/ImmutableClass.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\SimpleHashMap\SimpleHashMap.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/SimpleHashMap/SimpleHashMap.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\SlowMap\MethodInf.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/SlowMap/MethodInf.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\SlowMap\SlowMap.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/SlowMap/SlowMap.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\algorithm\FirstNoRepeatingChar.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/algorithm/FirstNoRepeatingChar.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\collection\MyHashMap.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/collection/MyHashMap.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\complexModel\store\Aisle.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/complexModel/store/Aisle.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\complexModel\store\Generator.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/complexModel/store/Generator.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\complexModel\store\Generators.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/complexModel/store/Generators.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\complexModel\store\Product.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/complexModel/store/Product.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\complexModel\store\Shelf.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/complexModel/store/Shelf.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\complexModel\store\Store.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/complexModel/store/Store.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\complexModel\store\Test.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/complexModel/store/Test.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\concurrence\CyclicBarrierTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/CyclicBarrierTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\concurrence\LockFreeCollection\LockFreeQueue.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/LockFreeCollection/LockFreeQueue.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\concurrence\LockFreeCollection\LockFreeStack.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/LockFreeCollection/LockFreeStack.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\concurrence\NoVisibility.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/NoVisibility.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\concurrence\StopThread.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/StopThread.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\concurrence\atomic\NoVisibility.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/atomic/NoVisibility.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\concurrence\atomic\SimpleTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/atomic/SimpleTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\concurrence\lock\FairLock.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/lock/FairLock.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\concurrence\lock\LockTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/lock/LockTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\concurrence\lock\UnFairLock.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/lock/UnFairLock.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\concurrence\shedule\BankTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/shedule/BankTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\concurrence\shedule\HeartBeat.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/shedule/HeartBeat.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\concurrence\shedule\InterruptThread.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/shedule/InterruptThread.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\BoxingIssus.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/BoxingIssus.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\ChineseAreaCode.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/ChineseAreaCode.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\ContainerMethodDifferences.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/ContainerMethodDifferences.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\DynamicProxyHandler.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/DynamicProxyHandler.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\FailFast.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/FailFast.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\Interface.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/Interface.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\InterfaceImplementation.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/InterfaceImplementation.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\MyMap.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/MyMap.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\ReferenceTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/ReferenceTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\Regex\Test.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/Regex/Test.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\StringFormat.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/StringFormat.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\WeakHashMapTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/WeakHashMapTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\io\file\FileTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/io/file/FileTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\performancetest\CountingIntegerList.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/performancetest/CountingIntegerList.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\performancetest\ListPerformance.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/performancetest/ListPerformance.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\performancetest\MapPerformanceTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/performancetest/MapPerformanceTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\performancetest\SetPerformaceTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/performancetest/SetPerformaceTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\performancetest\Test.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/performancetest/Test.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\performancetest\TestParam.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/performancetest/TestParam.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\container\performancetest\Tester.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/container/performancetest/Tester.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\datastructure\NodeColor.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/datastructure/NodeColor.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\datastructure\RBTree.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/datastructure/RBTree.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\datastructure\RBTreeNode.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/datastructure/RBTreeNode.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\datastructure\RBTreeTest.java" afterPath="$PROJECT_DIR$/java/src/test/java/yuanye/datastructure/RBTreeTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\datastructure\SeqLock.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/datastructure/SeqLock.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\datastructure\SpinLock.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/datastructure/SpinLock.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\dp\AbstractFactory.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/dp/AbstractFactory.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\dp\Bridge.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/dp/Bridge.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\dp\Builder.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/dp/Builder.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\innerclass\NormalInner.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/innerclass/NormalInner.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\io\inputstream\InputStreamTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/io/inputstream/InputStreamTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\BasicFileChannel.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/BasicFileChannel.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\BufferCreation.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/BufferCreation.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\BufferFillDrain.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/BufferFillDrain.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\ChannelCopy.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/ChannelCopy.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\ChannelTransform.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/ChannelTransform.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\DatagramChannelExample.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/DatagramChannelExample.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\FileFinder.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/FileFinder.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\FileHole.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/FileHole.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\FolderMonitor.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/FolderMonitor.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\GatheringWrite.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/GatheringWrite.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\JavaFileVistor.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/JavaFileVistor.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\MetadataOperation.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/MetadataOperation.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\PipeChannelTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/PipeChannelTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\nio\SelectorExample.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/nio/SelectorExample.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\performancetest\nio\FileCopy.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/performancetest/nio/FileCopy.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\performancetest\nio\IOCompareTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/performancetest/nio/IOCompareTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\performancetest\nio\Test.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/performancetest/nio/Test.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\performancetest\nio\Tester.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/performancetest/nio/Tester.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\performancetest\nio\ZIPCompress.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/performancetest/nio/ZIPCompress.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\statemachine\autoseller\Category.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/statemachine/autoseller/Category.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\statemachine\autoseller\Input.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/statemachine/autoseller/Input.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\statemachine\autoseller\VendingMachine.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/statemachine/autoseller/VendingMachine.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\cn\yuanye\todolist\ToDoList.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/todolist/ToDoList.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\test\cn\yuanye\algorithm\FirstNoRepeatingCharTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/algorithm/FirstNoRepeatingCharTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\test\cn\yuanye\collection\MyHashMapTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/collection/MyHashMapTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\test\cn\yuanye\concurrence\LockFreeCollection\LockFreeQueueTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/LockFreeCollection/LockFreeQueueTest.java" />
-      <change type="MOVED" beforePath="D:\Documents\GitHub\Thinking_In_Java\src\test\cn\yuanye\concurrence\LockFreeCollection\LockFreeStackTest.java" afterPath="$PROJECT_DIR$/java/src/main/java/yuanye/concurrence/LockFreeCollection/LockFreeStackTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="Thinking_In_Java.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -170,28 +66,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Temp.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/src/main/java/Temp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="29" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1400">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="22" selection-start="284" selection-end="284" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SerializeDemo.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/java/src/main/java/yuanye/reflection/SerializeDemo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="218" selection-end="218" vertical-scroll-proportion="0.22077923" vertical-offset="17" max-vertical-offset="1519">
+            <state line="14" column="7" selection-start="226" selection-end="226" vertical-scroll-proportion="0.24350649" vertical-offset="13" max-vertical-offset="1519">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -300,6 +178,136 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thinking_In_Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thinking_In_Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thinking_In_Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thinking_In_Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thinking_In_Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thinking_In_Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thinking_In_Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thinking_In_Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yuanye" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thinking_In_Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thinking_In_Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yuanye" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reflection" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -676,12 +684,12 @@
       <workItem from="1400228115494" duration="2007000" />
       <workItem from="1400637746549" duration="1278000" />
       <workItem from="1400728970088" duration="10653000" />
-      <workItem from="1400759490623" duration="1063000" />
+      <workItem from="1400759490623" duration="1719000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20553000" />
+    <option name="totallyTimeSpent" value="21209000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -832,6 +840,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/test/java/yuanye/datastructure/RBTreeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="6" selection-start="220" selection-end="220" vertical-scroll-proportion="0.25757575" vertical-offset="0" max-vertical-offset="2998">
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="22" selection-start="284" selection-end="284" vertical-scroll-proportion="0.07359307" vertical-offset="0" max-vertical-offset="1230">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/java/src/main/java/yuanye/reflection/MethodExample.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="30" selection-start="1118" selection-end="1118" vertical-scroll-proportion="0.60714287" vertical-offset="0" max-vertical-offset="2063">
@@ -839,32 +863,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/src/test/java/yuanye/datastructure/RBTreeTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="6" selection-start="220" selection-end="220" vertical-scroll-proportion="0.25757575" vertical-offset="0" max-vertical-offset="2998">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/src/main/java/Temp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="29" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1400">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="22" selection-start="284" selection-end="284" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230">
+        <state line="7" column="29" selection-start="116" selection-end="116" vertical-scroll-proportion="0.12878788" vertical-offset="0" max-vertical-offset="1400">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/java/src/main/java/yuanye/reflection/SerializeDemo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="218" selection-end="218" vertical-scroll-proportion="0.22077923" vertical-offset="17" max-vertical-offset="1519">
+        <state line="14" column="7" selection-start="226" selection-end="226" vertical-scroll-proportion="0.24350649" vertical-offset="13" max-vertical-offset="1519">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

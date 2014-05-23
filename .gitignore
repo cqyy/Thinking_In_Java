@@ -2,4 +2,5 @@
 tmp/
 *.iml
 out/
+_scala/
 !.gitignore
