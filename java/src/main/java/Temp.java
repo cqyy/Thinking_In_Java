@@ -1,4 +1,5 @@
-import java.lang.reflect.Array;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 
 /**
  * Created by Kali on 14-5-13.
@@ -17,10 +18,8 @@ public class Temp {
         System.out.println(this.getClass().getName());
     }
 
-    public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException, ClassNotFoundException, InstantiationException {
-        Class<?> cl = Class.forName("java.lang.String");
-        String[] strings = (String[]) Array.newInstance(cl,5);
-        System.out.println(strings.length);
+    public static void main(String[] args){
+       FileSystem fs = FileSystems.getDefault();
     }
 }
 
