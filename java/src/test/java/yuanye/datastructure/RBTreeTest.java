@@ -2,6 +2,7 @@ package yuanye.datastructure;
 
 import org.junit.Test;
 import yuanye.datastructure.rbtree.NodeColor;
+import yuanye.datastructure.rbtree.RBTree;
 import yuanye.datastructure.rbtree.RBTreeNode;
 
 import java.util.*;
