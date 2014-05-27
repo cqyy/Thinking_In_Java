@@ -36,6 +36,14 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
+    void deleteNotEmpty(K key) {
+        if (size <= degree -1){
+            throw new RuntimeException("size of node <= degree -1");
+        }
+        this.deleteKey(key);
+    }
+
+    @Override
     void insertKey(K key) {
         checkNotFull();
         int i = size -1;
@@ -49,12 +57,91 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
-    void replace(K oldKey, K newKey) {
+    K deleteKey(K key) {
+
+        int i = indexOf(key);
+        return this.deleteKey(i);
+    }
+
+    private int indexOf(K key) {
+        int i = 0;
+        if (size > 0) {
+            while (i < size) {
+                if (key.equals(keys[i]))
+                    return i;
+                i++;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    K deleteKey(int index) {
+        K result = null;
+        if (index < size){
+            result = (K) keys[index];
+            while (index < size-1){
+                keys[index] = keys[index + 1];
+                index++;
+            }
+            keys[size-1] = null;
+            size--;
+        }
+        return result;
+    }
+
+    @Override
+    boolean existsKey(K key) {
+        boolean result = false;
+        int i = 0;
+        while (i < size){
+            if (key.equals(keys[i])){
+                result = true;
+                break;
+            }
+            i++;
+        }
+        return result;
+    }
+
+    @Override
+    void replaceKey(K oldKey, K newKey) {
+        int i = 0;
+        while (i < size){
+            if (oldKey.equals(keys[i]))
+                break;
+            i++;
+        }
+        //old key exists
+        if (i < size){
+            if (    (i > 0 && newKey.compareTo((K)keys[i -1]) < 0)
+                 || ( i < size -1) && newKey.compareTo((K)keys[i +1]) > 0 ){
+                throw new RuntimeException("new key conflict with neighbor");
+            }
+            keys[i] = newKey;
+        }
+    }
+
+    @Override
+    void replaceKey(K newKey, int oldKeyIndex) {
+        if (oldKeyIndex < size){
+            this.replaceKey((K)keys[oldKeyIndex],newKey);
+        }
     }
 
     @Override
     void insertChild(AbstractBTreeNode<K> sub, int index) {
         throw new RuntimeException("Leaf node does not support insertChild");
+    }
+
+    @Override
+    void deleteChild(AbstractBTreeNode<K> sub) {
+        throw new RuntimeException("Leaf does not support deleteChild()");
+    }
+
+    @Override
+    void deleteChild(int index) {
+        throw new RuntimeException("Leaf does not support deleteChild()");
     }
 
     @Override
@@ -86,6 +173,18 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
+    void merge(K middle, AbstractBTreeNode<K> sibling) {
+        if ( !(sibling instanceof BTreeLeaf)){
+            throw new RuntimeException("Sibling is not leaf node");
+        }
+        BTreeLeaf node = (BTreeLeaf)sibling;
+        this.insertKey(middle);
+        for (int i = 0; i < node.keys(); i++){
+            this.insertKey((K)node.keys[i]);
+        }
+    }
+
+    @Override
     AbstractBTreeNode<K> getChild(int index) {
         return null;
     }
@@ -94,6 +193,7 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     int keys() {
         return size;
     }
+
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();

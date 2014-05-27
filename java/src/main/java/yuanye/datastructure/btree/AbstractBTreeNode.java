@@ -25,19 +25,40 @@ abstract class AbstractBTreeNode<K extends Comparable<K>> {
 
     abstract void insertNotFull(K key);
 
+    abstract void deleteNotEmpty(K key);
+
     abstract void insertKey(K key);
 
-    abstract void replace(K oldKey,K  newKey);
+    abstract K deleteKey(K key);
+
+    abstract K deleteKey(int index);
+
+    abstract boolean existsKey(K key);
+
+    abstract void replaceKey(K oldKey,K newKey);
+
+    abstract void replaceKey(K newKey,int oldKeyIndex);
 
     abstract void insertChild(AbstractBTreeNode<K> sub,int index);
+
+    abstract void deleteChild(AbstractBTreeNode<K> sub);
+
+    abstract void deleteChild(int index);
+
+    abstract AbstractBTreeNode<K> getChild(int index);
 
     abstract void splitChild(int child);
 
     abstract K splitSelf(AbstractBTreeNode<K> newNode);
 
-    abstract AbstractBTreeNode<K> getChild(int index);
+    abstract void merge(K middle,AbstractBTreeNode<K> sibling);
 
     abstract int keys();
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj;
+    }
 
     boolean isFull(){
         return keys() == degree*2 -1;
