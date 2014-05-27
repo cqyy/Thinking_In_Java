@@ -1,4 +1,4 @@
-package yuanye.datastructure;
+package yuanye.datastructure.rbtree;
 
 /**
  * Created by Administrator on 14-2-19.

@@ -5,10 +5,7 @@ import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.annotation.ElementType;
 import java.lang.reflect.*;
 import java.util.*;
 
@@ -64,9 +61,11 @@ public class SerializeDemo {
         return target;
     }
 
-    private static Element serializeVariable(Class<?> cl, Object obj, Document target, IdentityHashMap<Object, Integer> table)
+    private static Element serializeVariable(Class<?> cl,
+                                             Object obj,
+                                             Document target,
+                                             IdentityHashMap<Object,Integer> table)
             throws IllegalAccessException {
-
         if (obj == null) {
             return new Element("null");
         }
@@ -110,7 +109,10 @@ public class SerializeDemo {
     }
 
 
-    public static Object deserializeObject(Document document) throws ClassNotFoundException {
+    public static Object deserializeObject(Document document)
+            throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
+            InstantiationException, IllegalAccessException, NoSuchFieldException {
+
         List<Element> oEles = document.getRootElement().getChildren();
         Map<Integer, Object> table = new HashMap<>();
         createInstance(table, oEles);
@@ -124,47 +126,99 @@ public class SerializeDemo {
         for (Element oEle : oList) {
             Class<?> cl = Class.forName(oEle.getAttributeValue("class"));
             Integer id = Integer.valueOf(oEle.getAttributeValue("id"));
+            Object instance = null;
             if (!cl.isArray()) {
                 Constructor constructor = cl.getConstructor(null);
-                Object obj = constructor.newInstance(null);
-                table.put(id, obj);
+                if (!Modifier.isPublic(constructor.getModifiers()))
+                    constructor.setAccessible(true);
+
+                instance = constructor.newInstance(null);
             } else {
                 int length = Integer.valueOf(oEle.getAttributeValue("length"));
-                Object obj = Array.newInstance(cl, length);
-                table.put(id, obj);
+                Class<?> compoentType = cl.getComponentType();
+                instance = Array.newInstance(compoentType, length);
             }
+            table.put(id,instance);
         }
     }
 
 
-    private static void assignFieldValues(Map<Integer, Object> table, List<Element> oList) throws NoSuchFieldException, IllegalAccessException {
-        for (Element oEle : oList) {
-            Object obj = table.get(Integer.valueOf(oEle.getAttributeValue("id")));
-            Class<?> oc = obj.getClass();
-            List<Element> fEles = oEle.getChildren();
-            if (!oc.isArray()) {
-                for (Element fEle : fEles) {
-                    String fName = fEle.getAttributeValue("name");
-                    Field field = oc.getField(fName);
+    private static void assignFieldValues(Map<Integer, Object> table, List<Element> oList)
+            throws NoSuchFieldException, IllegalAccessException, ClassNotFoundException {
+        for(Element oEle : oList){
+            Integer id = Integer.valueOf(oEle.getAttributeValue("id"));
+            Object instance = table.get(id);
+            Class<?> cls = Class.forName(oEle.getAttributeValue("class"));
+            List<Element> children = oEle.getChildren();
+            if (!cls.isArray()){
+                for(Element child : children){
+                    String declaringclass = child.getAttributeValue("declaringClass");
+                    Class<?> childClass = Class.forName(declaringclass);
+                    String fName = child.getAttributeValue("name");
+                    Field field = childClass.getDeclaredField(fName);
                     if (!Modifier.isPublic(field.getModifiers()))
                         field.setAccessible(true);
-                    field.set(obj, deserializeValue(table, oList, fEle));
+                    Element ve = (Element) child.getChildren().get(0);
+                    field.set(instance,deserializeValue(table,field.getType(),ve));
                 }
             }else{
-                Class<?> componentType = oc.getComponentType();
-                int length = Array.getLength(obj);
+                Class<?> componentType = cls.getComponentType();
+                int length = Array.getLength(instance);
                 for(int i = 0; i < length; i++){
-                    Array.set(obj,i,deserializeValue(table,oList,oEle));
+                    Array.set(instance,i,deserializeValue(table, componentType, children.get(i)));
                 }
             }
         }
     }
 
-    private static Object deserializeValue(Map<Integer, Object> table, List<Element> oList, Element ele) {
-
+    private static Object deserializeValue(Map<Integer, Object> table, Class<?> fieldType, Element ele) {
+        String valType = ele.getName();
+        if (valType.equals("null")){
+            return null;
+        }
+        if (valType.equals("reference")){
+            Integer id = Integer.valueOf(ele.getText());
+            return table.get(id);
+        }
+        else{
+            if (fieldType.equals(boolean.class)) {
+                if (ele.getText().equals("true")) {
+                    return Boolean.TRUE;
+                }
+                else {
+                    return Boolean.FALSE;
+                }
+            }
+            else if (fieldType.equals(byte.class)) {
+                return Byte.valueOf(ele.getText());
+            }
+            else if (fieldType.equals(short.class)) {
+                return Short.valueOf(ele.getText());
+            }
+            else if (fieldType.equals(int.class)) {
+                return Integer.valueOf(ele.getText());
+            }
+            else if (fieldType.equals(long.class)) {
+                return Long.valueOf(ele.getText());
+            }
+            else if (fieldType.equals(float.class)) {
+                return Float.valueOf(ele.getText());
+            }
+            else if (fieldType.equals(double.class)) {
+                return Double.valueOf(ele.getText());
+            }
+            else if (fieldType.equals(char.class)) {
+                return new Character(ele.getText().charAt(0));
+            }
+            else {
+                return ele.getText();
+            }
+        }
     }
 
-    public static void main(String[] args) throws IllegalAccessException, IOException {
+    public static void main(String[] args)
+            throws IllegalAccessException, IOException, ClassNotFoundException, NoSuchMethodException,
+            NoSuchFieldException, InstantiationException, InvocationTargetException {
         Zoo zoo = new Zoo("Chengdu National Zoo", "Chengdu");
         Panda panda1 = new Panda("Mei mei");
         Panda panda2 = new Panda("Zhuang zhuang");
@@ -178,20 +232,27 @@ public class SerializeDemo {
         zoo.setPandas(new Panda[]{panda1, panda2});
 
         Document document = SerializeDemo.serializeObject(zoo);
+
         XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
-//        xmlOutputter.output(document,System.out);
-        File file = new File("D://zoo.xml");
-        file.createNewFile();
-        FileOutputStream out = new FileOutputStream(file);
-        xmlOutputter.output(document, out);
-        out.close();
+       // xmlOutputter.output(document,System.out);
+
+        Zoo zoo2 = (Zoo) SerializeDemo.deserializeObject(document);
+        System.out.println(zoo2.toString());
+
+//        File file = new File("D://zoo.xml");
+//        file.createNewFile();
+//        FileOutputStream out = new FileOutputStream(file);
+//        xmlOutputter.output(document, out);
+//        out.close();
     }
 }
 
 class Zoo {
-    private final String name;
-    private final String city;
+    private  String name;
+    private  String city;
     private Panda[] pandas;
+
+    public Zoo(){}
 
     Zoo(String name, String city) {
         this.name = name;
@@ -202,13 +263,28 @@ class Zoo {
         this.pandas = pandas;
     }
 
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        sb.append("Zoo ---  ")
+                .append(" name: ").append(name)
+                .append(" city: ").append(city)
+                .append("[");
+        for(Panda panda : pandas){
+            sb.append(panda.toString()).append(" |");
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }
 
 class Panda {
-    private final String name;
+    private  String name;
     private String gender;
     private int weight;
     private String classification;
+
+    public Panda(){}
 
     Panda(String name) {
         this.name = name;
@@ -236,5 +312,16 @@ class Panda {
 
     public void setClassification(String classification) {
         this.classification = classification;
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        sb.append("panda ")
+                .append(" name:").append(name)
+                .append(" gender: ").append(gender)
+                .append(" weight: ").append(weight)
+                .append(" classification: ").append(classification);
+        return sb.toString();
     }
 }

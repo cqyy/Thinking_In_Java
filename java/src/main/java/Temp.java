@@ -1,5 +1,3 @@
-import java.lang.reflect.Array;
-
 /**
  * Created by Kali on 14-5-13.
  */
@@ -18,9 +16,8 @@ public class Temp {
     }
 
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException, ClassNotFoundException, InstantiationException {
-        Class<?> cl = Class.forName("java.lang.String");
-        String[] strings = (String[]) Array.newInstance(cl,5);
-        System.out.println(strings.length);
+
+
     }
 }
 

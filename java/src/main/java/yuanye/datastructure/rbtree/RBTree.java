@@ -1,4 +1,4 @@
-package yuanye.datastructure;
+package yuanye.datastructure.rbtree;
 
 import java.util.LinkedList;
 import java.util.Queue;
