@@ -8,8 +8,6 @@ abstract class AbstractBTreeNode<K extends Comparable<K>> {
     protected final int degree;
     protected final static int defaultDegree = 2;
 
-    protected AbstractBTreeNode parent ;
-
     AbstractBTreeNode(){
         this(defaultDegree);
     }
@@ -23,11 +21,15 @@ abstract class AbstractBTreeNode<K extends Comparable<K>> {
 
     abstract boolean isLeaf();
 
+    abstract K search(K key);
+
     abstract void insertNotFull(K key);
 
     abstract void deleteNotEmpty(K key);
 
     abstract void insertKey(K key);
+
+    abstract K getKey(int idx);
 
     abstract K deleteKey(K key);
 
@@ -37,13 +39,13 @@ abstract class AbstractBTreeNode<K extends Comparable<K>> {
 
     abstract void replaceKey(K oldKey,K newKey);
 
-    abstract void replaceKey(K newKey,int oldKeyIndex);
+    abstract K replaceKey(K newKey,int oldKeyIndex);
 
     abstract void insertChild(AbstractBTreeNode<K> sub,int index);
 
     abstract void deleteChild(AbstractBTreeNode<K> sub);
 
-    abstract void deleteChild(int index);
+    abstract AbstractBTreeNode deleteChild(int index);
 
     abstract AbstractBTreeNode<K> getChild(int index);
 
@@ -64,10 +66,4 @@ abstract class AbstractBTreeNode<K extends Comparable<K>> {
         return keys() == degree*2 -1;
     }
 
-    AbstractBTreeNode parent(){
-        return parent;
-    }
-    void parent(AbstractBTreeNode parent){
-        this.parent = parent;
-    }
 }

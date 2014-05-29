@@ -23,6 +23,14 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
         return true;
     }
 
+    @Override
+    K search(K key) {
+        int index = indexOf(key);
+        if (index >=0)
+            return (K) keys[index];
+        return null;
+    }
+
     private void checkNotFull(){
         if (isFull()){
             throw new RuntimeException("node is full");
@@ -54,6 +62,11 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
         i++;
         keys[i] = key;
         size ++;
+    }
+
+    @Override
+    K getKey(int idx) {
+        return (K) keys[idx];
     }
 
     @Override
@@ -123,10 +136,13 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
-    void replaceKey(K newKey, int oldKeyIndex) {
+    K replaceKey(K newKey, int oldKeyIndex) {
+        K result = null;
         if (oldKeyIndex < size){
+            result = (K) keys[oldKeyIndex];
             this.replaceKey((K)keys[oldKeyIndex],newKey);
         }
+        return result;
     }
 
     @Override
@@ -140,7 +156,7 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
-    void deleteChild(int index) {
+    AbstractBTreeNode deleteChild(int index) {
         throw new RuntimeException("Leaf does not support deleteChild()");
     }
 
