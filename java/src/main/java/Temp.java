@@ -1,5 +1,4 @@
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
+import java.nio.ByteBuffer;
 
 /**
  * Created by Kali on 14-5-13.
@@ -20,7 +19,8 @@ public class Temp {
 
 
     public static void main(String[] args){
-       FileSystem fs = FileSystems.getDefault();
+        ByteBuffer buffer = ByteBuffer.allocate(32);
+        buffer.flip();
     }
 }
 
