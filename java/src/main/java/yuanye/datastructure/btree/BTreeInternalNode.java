@@ -58,7 +58,7 @@ class BTreeInternalNode<K extends Comparable<K>> extends AbstractBTreeNode<K> {
             int index = indexOf(key);
             //predecessor child could delete
             if (index > 0 && children[index -1].keys() >= degree){
-               start from here next time;
+               //start from here next time;
             }
         } else {
 
