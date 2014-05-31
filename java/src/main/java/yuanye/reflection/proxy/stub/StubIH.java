@@ -18,11 +18,11 @@ public class StubIH implements Stub,InvocationHandler {
         if (strategy != null){this.strategy = strategy;}
     }
 
-    public static Stub createProxy(Class<?>[] interfaces,History history){
-        return createProxy(interfaces, history, null);
+    public static Stub createProxy(Class<?>[] interfaces,ReturnValueStrategy strategy){
+        return createProxy(interfaces,strategy, null);
     }
 
-    public static Stub createProxy(Class<?>[] interfaces,History history,ReturnValueStrategy strategy){
+    public static Stub createProxy(Class<?>[] interfaces,ReturnValueStrategy strategy,History history){
 
         for(Class<?> ifa : interfaces){
             if (ifa == Stub.class || ifa == InvocationHandler.class){
