@@ -1,8 +1,5 @@
 package yuanye.datastructure.btree;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 /**
  * Created by Kali on 14-5-26.
  */
@@ -33,7 +30,7 @@ public class BTree<K extends Comparable<K>> {
     public void delete(K key){
         AbstractBTreeNode<K> node = root;
         node.deleteNotEmpty(key);
-        if (node.keys() == 0){
+        if (node.nkey() == 0){
             //shrink
             root = node.getChild(0);
         }
@@ -41,21 +38,7 @@ public class BTree<K extends Comparable<K>> {
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
-        AbstractBTreeNode node;
-        Queue<AbstractBTreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        String newLine = System.getProperty("line.separator");
-        while (!queue.isEmpty()){
-            node = queue.poll();
-            sb.append(node).append(newLine);
-            int i = 0;
-            while (node.getChild(i) != null){
-                queue.offer(node.getChild(i));
-                i++;
-            }
-        }
-        return sb.toString();
+       return AbstractBTreeNode.BTreeToString(this.root);
     }
 
     public static void main(String[] args) {

@@ -6,11 +6,7 @@ package yuanye.datastructure.btree;
 public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
 
     private final Object[] keys;
-    private int size;
-
-    BTreeLeaf(){
-        this(defaultDegree);
-    }
+    private int nkey;
 
     BTreeLeaf(int degree){
         super(degree);
@@ -25,16 +21,59 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
 
     @Override
     K search(K key) {
-        int index = indexOf(key);
+        int index = indexOfKey(key);
         if (index >=0)
             return (K) keys[index];
         return null;
     }
 
-    private void checkNotFull(){
-        if (isFull()){
-            throw new RuntimeException("node is full");
-        }
+    @Override
+    K getKey(int idx) {
+        return (K) keys[idx];
+    }
+
+    @Override
+    K setKey(K newKey, int oldKeyIndex) {
+        K old = (K) keys[oldKeyIndex];
+        keys[oldKeyIndex] = newKey;
+        return old;
+    }
+
+    @Override
+    void setChild(AbstractBTreeNode<K> sub, int index) {
+        throw new RuntimeException("Could not set child of leaf node.");
+    }
+
+    @Override
+    AbstractBTreeNode<K> getChild(int index) {
+        return null;
+    }
+
+    @Override
+    void splitChild(int child) {
+        throw new  RuntimeException("Could not split child of leaf node.");
+    }
+
+    @Override
+    int setNKey(int nkey) {
+        int old = this.nkey;
+        this.nkey = nkey;
+        return old;
+    }
+
+    @Override
+    int nkey() {
+        return nkey;
+    }
+
+    @Override
+    int nchild() {
+        return 0;
+    }
+
+    @Override
+    int setNChild(int nchild) {
+        throw new RuntimeException("Could set NChild of leaf node.");
     }
 
     @Override
@@ -45,124 +84,10 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
 
     @Override
     void deleteNotEmpty(K key) {
-        if (size <= degree -1){
+        if (nkey <= degree -1){
             throw new RuntimeException("size of node <= degree -1");
         }
         this.deleteKey(key);
-    }
-
-    @Override
-    void insertKey(K key) {
-        checkNotFull();
-        int i = size -1;
-        while (i >= 0 && key.compareTo((K)keys[i]) < 0){
-            keys[i+1] = keys[i];
-            i--;
-        }
-        i++;
-        keys[i] = key;
-        size ++;
-    }
-
-    @Override
-    K getKey(int idx) {
-        return (K) keys[idx];
-    }
-
-    @Override
-    K deleteKey(K key) {
-
-        int i = indexOf(key);
-        return this.deleteKey(i);
-    }
-
-    private int indexOf(K key) {
-        int i = 0;
-        if (size > 0) {
-            while (i < size) {
-                if (key.equals(keys[i]))
-                    return i;
-                i++;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    K deleteKey(int index) {
-        K result = null;
-        if (index < size){
-            result = (K) keys[index];
-            while (index < size-1){
-                keys[index] = keys[index + 1];
-                index++;
-            }
-            keys[size-1] = null;
-            size--;
-        }
-        return result;
-    }
-
-    @Override
-    boolean existsKey(K key) {
-        boolean result = false;
-        int i = 0;
-        while (i < size){
-            if (key.equals(keys[i])){
-                result = true;
-                break;
-            }
-            i++;
-        }
-        return result;
-    }
-
-    @Override
-    void replaceKey(K oldKey, K newKey) {
-        int i = 0;
-        while (i < size){
-            if (oldKey.equals(keys[i]))
-                break;
-            i++;
-        }
-        //old key exists
-        if (i < size){
-            if (    (i > 0 && newKey.compareTo((K)keys[i -1]) < 0)
-                 || ( i < size -1) && newKey.compareTo((K)keys[i +1]) > 0 ){
-                throw new RuntimeException("new key conflict with neighbor");
-            }
-            keys[i] = newKey;
-        }
-    }
-
-    @Override
-    K replaceKey(K newKey, int oldKeyIndex) {
-        K result = null;
-        if (oldKeyIndex < size){
-            result = (K) keys[oldKeyIndex];
-            this.replaceKey((K)keys[oldKeyIndex],newKey);
-        }
-        return result;
-    }
-
-    @Override
-    void insertChild(AbstractBTreeNode<K> sub, int index) {
-        throw new RuntimeException("Leaf node does not support insertChild");
-    }
-
-    @Override
-    void deleteChild(AbstractBTreeNode<K> sub) {
-        throw new RuntimeException("Leaf does not support deleteChild()");
-    }
-
-    @Override
-    AbstractBTreeNode deleteChild(int index) {
-        throw new RuntimeException("Leaf does not support deleteChild()");
-    }
-
-    @Override
-    void splitChild(int child) {
-        throw new RuntimeException("Leaf dose not support split child");
     }
 
     @Override
@@ -183,8 +108,8 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
             i++;
         }
         this.keys[degree -1] = null;
-        this.size = degree -1;
-        node.size = degree -1;
+        this.nkey = degree -1;
+        node.nkey = degree -1;
         return middle;
     }
 
@@ -195,26 +120,16 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
         }
         BTreeLeaf node = (BTreeLeaf)sibling;
         this.insertKey(middle);
-        for (int i = 0; i < node.keys(); i++){
+        for (int i = 0; i < node.nkey(); i++){
             this.insertKey((K)node.keys[i]);
         }
     }
 
     @Override
-    AbstractBTreeNode<K> getChild(int index) {
-        return null;
-    }
-
-    @Override
-    int keys() {
-        return size;
-    }
-
-    @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
-        sb.append("leaf----").append("size: ").append(size).append(" keys:").append("[");
-        for(int i = 0; i < size; i++){
+        sb.append("leaf----").append("size: ").append(nkey).append(" keys:").append("[");
+        for(int i = 0; i < nkey; i++){
             sb.append(keys[i]).append(",");
         }
         sb.append("]");
