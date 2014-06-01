@@ -17,7 +17,7 @@ class BTreeInternalNode<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
-    boolean isLeaf() {
+    protected boolean isLeaf() {
         return false;
     }
 
@@ -28,24 +28,27 @@ class BTreeInternalNode<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
-    K setKey(K newKey, int oldKeyIndex) {
+    protected K setKey(K newKey, int oldKeyIndex) {
         K old = (K) keys[oldKeyIndex];
         keys[oldKeyIndex] = newKey;
         return old;
     }
 
     @Override
-    void setChild(AbstractBTreeNode<K> sub, int index) {
+    protected void setChild(AbstractBTreeNode<K> sub, int index) {
         children[index] = sub;
     }
 
     @Override
     AbstractBTreeNode<K> getChild(int index) {
-        return children[index];
+        if (index >= 0 && index < children.length) {
+            return children[index];
+        }
+        return null;
     }
 
     @Override
-    int setNKey(int nkey) {
+    protected int setNKey(int nkey) {
         int old = this.nkey;
         this.nkey = nkey;
         return old;
@@ -62,7 +65,7 @@ class BTreeInternalNode<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
-    int setNChild(int nchild) {
+    protected int setNChild(int nchild) {
         int old = this.nchild;
         this.nchild = nchild;
         return old;
@@ -102,98 +105,91 @@ class BTreeInternalNode<K extends Comparable<K>> extends AbstractBTreeNode<K> {
         //key in this node
         if (this.existsKey(key)) {
             int index = indexOfKey(key);
+            AbstractBTreeNode<K> node;
             //predecessor child could delete
-            if (index > 0 && children[index - 1].nkey() >= degree) {
-
-                //start from here next time;
-                //predecessor child could delete a key
-                AbstractBTreeNode<K> node;
-                if ((node = children[index - 1]).nkey() >= degree) {
-                    K repKey = node.getKey(node.nkey() - 1);                  //maximum key in predecessor
-                    node.deleteNotEmpty(repKey);
-                    setKey(repKey, index);
-                }
-
-                //follow child could delete a key
-                else if ((node = children[index + 1]).nkey() >= degree) {
-                    K repKey = node.getKey(0);                              //minimum key in follow
-                    node.deleteNotEmpty(repKey);
-                    setKey(repKey, index);
-                }
-
-                //merge predecessor with follow
-                else {
-                    node = children[index];
-                    node.merge(key, children[index + 1]);
-                    this.deleteKey(index);
-                    this.deleteChild(index + 1);
-                    node.deleteNotEmpty(key);
-                }
+            if ((node = children[index]).nkey() >= degree) {
+                K repKey = node.getKey(node.nkey() - 1);                  //maximum key in predecessor
+                node.deleteNotEmpty(repKey);
+                setKey(repKey, index);
             }
-        }
+            //follow child could delete a key
+            else if ((node = children[index + 1]).nkey() >= degree) {
+                K repKey = node.getKey(0);                              //minimum key in follow
+                node.deleteNotEmpty(repKey);
+                setKey(repKey, index);
+            }
 
-        //key may exist in child
-        else {
-            int i = 0;
-            //find proper child the key may exists in
-            while (i < nkey) {
-                if (key.compareTo((K) keys[i]) < 0)
-                    break;
-                i++;
-            }
-            AbstractBTreeNode<K> target = children[i];
-            //child has enough key
-            if (target.nkey() >= degree) {
-                target.deleteNotEmpty(key);
-            }
+            //merge predecessor with follow
             else {
-                AbstractBTreeNode<K> sibling;
-                //try to find replacement from predecessor
-                if (i > 0 && (sibling = children[i - 1]).nkey() >= degree) {
-                    if (!target.isLeaf()) {
-                        AbstractBTreeNode<K> sub = sibling.deleteChild(nchild); //last child
-                        target.insertChild(sub, 0);
-                    }
-                    K repKey = sibling.deleteKey(sibling.nkey() - 1);    //maximum key
-                    repKey = setKey(repKey, i - 1);
-                    target.insertKey(repKey);
-                    target.deleteNotEmpty(key);
-                }
-                //try to find replacement from follower
-                else if (i < nkey && (sibling = children[i + 1]).nkey() >= degree) {
-                    if (!target.isLeaf()) {
-                        AbstractBTreeNode<K> sub = sibling.deleteChild(0);  //first child
-                        target.insertChild(sub, target.nchild());
-                    }
-                    K repKey = sibling.deleteKey(0);                    //minimum key
-                    repKey = setKey(repKey, i);
-                    target.insertKey(repKey);
-                    target.deleteNotEmpty(key);
-                }
-                //merge child with one of it's sibling
-                else {
-                    //merge with predecessor sibling
-                    if (i > 0) {
-                        K repKey = this.deleteKey(i - 1);
-                        sibling = children[i - 1];
-                        sibling.merge(repKey, target);
-                        this.deleteChild(target);
-                        sibling.deleteNotEmpty(key);
-                    } else {
-                        K repKey = this.deleteKey(i);
-                        sibling = children[i + 1];
-                        target.merge(repKey, sibling);
-                        deleteChild(i + 1);
-                        target.deleteNotEmpty(key);
-                    }
-                }
+                node = children[index];
+                node.merge(key, children[index + 1]);
+                this.deleteKey(index);
+                this.deleteChild(index + 1);
+                node.deleteNotEmpty(key);
             }
-        }
-
     }
 
+    //key may exist in child
+    else{
+        int i = 0;
+        //find proper child the key may exists in
+        while (i < nkey) {
+            if (key.compareTo((K) keys[i]) < 0)
+                break;
+            i++;
+        }
+        AbstractBTreeNode<K> target = children[i];
+        //child has enough key
+        if (target.nkey() >= degree) {
+            target.deleteNotEmpty(key);
+        } else {
+            AbstractBTreeNode<K> sibling;
+            //try to find replacement from predecessor
+            if (i > 0 && (sibling = children[i - 1]).nkey() >= degree) {
+                if (!target.isLeaf()) {
+                    AbstractBTreeNode<K> sub = sibling.deleteChild(nchild); //last child
+                    target.insertChild(sub, 0);
+                }
+                K repKey = sibling.deleteKey(sibling.nkey() - 1);    //maximum key
+                repKey = setKey(repKey, i - 1);
+                target.insertKey(repKey);
+                target.deleteNotEmpty(key);
+            }
+            //try to find replacement from follower
+            else if (i < nkey && (sibling = children[i + 1]).nkey() >= degree) {
+                if (!target.isLeaf()) {
+                    AbstractBTreeNode<K> sub = sibling.deleteChild(0);  //first child
+                    target.insertChild(sub, target.nchild());
+                }
+                K repKey = sibling.deleteKey(0);                    //minimum key
+                repKey = setKey(repKey, i);
+                target.insertKey(repKey);
+                target.deleteNotEmpty(key);
+            }
+            //merge child with one of it's sibling
+            else {
+                //merge with predecessor sibling
+                if (i > 0) {
+                    K repKey = this.deleteKey(i - 1);
+                    sibling = children[i - 1];
+                    sibling.merge(repKey, target);
+                    this.deleteChild(target);
+                    sibling.deleteNotEmpty(key);
+                } else {
+                    K repKey = this.deleteKey(i);
+                    sibling = children[i + 1];
+                    target.merge(repKey, sibling);
+                    deleteChild(i + 1);
+                    target.deleteNotEmpty(key);
+                }
+            }
+        }
+    }
+
+}
+
     @Override
-    void splitChild(int child) {
+    protected void splitChild(int child) {
         AbstractBTreeNode<K> old = children[child];
         AbstractBTreeNode<K> neo = old.isLeaf()
                 ? new BTreeLeaf<>(degree)
@@ -204,7 +200,7 @@ class BTreeInternalNode<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
-    K splitSelf(AbstractBTreeNode<K> newNode) {
+    protected K splitSelf(AbstractBTreeNode<K> newNode) {
         if (!(newNode instanceof BTreeInternalNode)) {
             throw new RuntimeException("Instance not match.");
         }
@@ -237,7 +233,7 @@ class BTreeInternalNode<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
-    void merge(K middle, AbstractBTreeNode<K> sibling) {
+    protected void merge(K middle, AbstractBTreeNode<K> sibling) {
         if (!(sibling instanceof BTreeInternalNode)) {
             throw new RuntimeException("Sibling is not leaf node");
         }
@@ -246,7 +242,7 @@ class BTreeInternalNode<K extends Comparable<K>> extends AbstractBTreeNode<K> {
         for (int i = 0; i < node.nkey(); i++) {
             this.insertKey((K) node.keys[i]);
         }
-        for (int i = 0; i < nchild(); i++) {
+        for (int i = 0; i < node.nchild(); i++) {
             insertChild(node.children[i], i + degree);
         }
     }

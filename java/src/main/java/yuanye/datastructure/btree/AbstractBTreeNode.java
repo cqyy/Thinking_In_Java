@@ -7,10 +7,9 @@ import java.util.Queue;
  * Created by Kali on 14-5-26.\
  * Abstract node.
  */
-abstract class AbstractBTreeNode<K extends Comparable<K>> {
+public abstract class AbstractBTreeNode<K extends Comparable<K>> {
 
     protected final int degree;
-    // protected final static int defaultDegree = 2;
 
     AbstractBTreeNode(int degree) {
         if (degree < 2) {
@@ -24,7 +23,7 @@ abstract class AbstractBTreeNode<K extends Comparable<K>> {
      *
      * @return true if is leaf,false if not.
      */
-    abstract boolean isLeaf();
+     abstract boolean isLeaf();
 
     /**
      * Search key in the B-Tree.
@@ -78,7 +77,7 @@ abstract class AbstractBTreeNode<K extends Comparable<K>> {
      * @return key of given index
      * @throws java.lang.RuntimeException if {@code idx < 0 } or {@code idx >= degree *2 -1}
      */
-    protected abstract K getKey(int idx);
+     abstract K getKey(int idx);
 
     /**
      * <p>Delete given key in current node.</p>
@@ -122,7 +121,7 @@ abstract class AbstractBTreeNode<K extends Comparable<K>> {
      * @param key key to check
      * @return true is given key exists in current node.
      */
-    protected boolean existsKey(K key) {
+     boolean existsKey(K key) {
         return indexOfKey(key) >= 0;
     }
 
@@ -178,9 +177,14 @@ abstract class AbstractBTreeNode<K extends Comparable<K>> {
      * @param index index of child to get
      * @return child subtree of null if index is invalid
      */
-    protected abstract AbstractBTreeNode<K> getChild(int index);
+     abstract AbstractBTreeNode<K> getChild(int index);
 
-    void deleteChild(AbstractBTreeNode<K> child) {
+    /**
+     * Delete given child in current node.
+     *
+     * @param child child subtree to delete.
+     */
+    protected void deleteChild(AbstractBTreeNode<K> child) {
         int index = -1;
         for (int i = 0; i < nchild(); i++) {
             if (this.getChild(i) == child) {
@@ -196,10 +200,10 @@ abstract class AbstractBTreeNode<K extends Comparable<K>> {
     /**
      * Delete child with given index
      *
-     * @param index index of child to deletee
+     * @param index index of child to delete
      * @return child subtree or null if index is invalid
      */
-    AbstractBTreeNode<K> deleteChild(int index) {
+    protected AbstractBTreeNode<K> deleteChild(int index) {
         AbstractBTreeNode<K> result = null;
         if (index >= 0 && index < this.nchild()) {
             result = this.getChild(index);
@@ -252,14 +256,14 @@ abstract class AbstractBTreeNode<K extends Comparable<K>> {
      *
      * @return key amount of current node.
      */
-    abstract int nkey();
+     abstract int nkey();
 
     /**
      * Child amount of current node.
      *
      * @return child amount.
      */
-    abstract int nchild();
+     abstract int nchild();
 
     /**
      * Set child amount of current node.
@@ -289,7 +293,7 @@ abstract class AbstractBTreeNode<K extends Comparable<K>> {
      *
      * @return true if current node is full,else false.
      */
-    boolean isFull() {
+    protected boolean isFull() {
         return nkey() == degree * 2 - 1;
     }
 
@@ -304,6 +308,13 @@ abstract class AbstractBTreeNode<K extends Comparable<K>> {
         }
     }
 
+    /**
+     * Recursively traverse the B-Tree,constitute a string.
+     *
+     * @param root root of B-Tree.
+     * @param <K> Type of key of B-Tree
+     * @return String of B-Tree.
+     */
     static <K extends Comparable<K>> String BTreeToString(AbstractBTreeNode<K> root){
         StringBuffer sb = new StringBuffer();
         AbstractBTreeNode node;

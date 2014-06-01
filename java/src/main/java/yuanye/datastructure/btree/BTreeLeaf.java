@@ -15,7 +15,7 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
 
 
     @Override
-    boolean isLeaf() {
+    protected boolean isLeaf() {
         return true;
     }
 
@@ -33,14 +33,14 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
-    K setKey(K newKey, int oldKeyIndex) {
+    protected K setKey(K newKey, int oldKeyIndex) {
         K old = (K) keys[oldKeyIndex];
         keys[oldKeyIndex] = newKey;
         return old;
     }
 
     @Override
-    void setChild(AbstractBTreeNode<K> sub, int index) {
+    protected void setChild(AbstractBTreeNode<K> sub, int index) {
         throw new RuntimeException("Could not set child of leaf node.");
     }
 
@@ -50,12 +50,12 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
-    void splitChild(int child) {
+    protected void splitChild(int child) {
         throw new  RuntimeException("Could not split child of leaf node.");
     }
 
     @Override
-    int setNKey(int nkey) {
+    protected int setNKey(int nkey) {
         int old = this.nkey;
         this.nkey = nkey;
         return old;
@@ -72,7 +72,7 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
-    int setNChild(int nchild) {
+    protected int setNChild(int nchild) {
         throw new RuntimeException("Could set NChild of leaf node.");
     }
 
@@ -84,14 +84,11 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
 
     @Override
     void deleteNotEmpty(K key) {
-        if (nkey <= degree -1){
-            throw new RuntimeException("size of node <= degree -1");
-        }
         this.deleteKey(key);
     }
 
     @Override
-    K splitSelf(AbstractBTreeNode<K> newNode) {
+    protected K splitSelf(AbstractBTreeNode<K> newNode) {
         if (! (newNode instanceof BTreeLeaf)){
             throw new RuntimeException("Instance not match.");
         }
@@ -114,7 +111,7 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
     }
 
     @Override
-    void merge(K middle, AbstractBTreeNode<K> sibling) {
+    protected void merge(K middle, AbstractBTreeNode<K> sibling) {
         if ( !(sibling instanceof BTreeLeaf)){
             throw new RuntimeException("Sibling is not leaf node");
         }

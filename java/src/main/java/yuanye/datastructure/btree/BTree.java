@@ -4,6 +4,7 @@ package yuanye.datastructure.btree;
  * Created by Kali on 14-5-26.
  */
 public class BTree<K extends Comparable<K>> {
+
     private final int degree;
     private AbstractBTreeNode<K> root;
 
@@ -15,6 +16,14 @@ public class BTree<K extends Comparable<K>> {
         root = new BTreeLeaf<>(degree);
     }
 
+    public AbstractBTreeNode<K> getRoot(){
+        return root;
+    }
+    /**
+     * Insert a key into B-Tree.
+     *
+     * @param key key to insert.
+     */
     public void insert(K key){
         AbstractBTreeNode<K> n = root;
         if (root.isFull()){
@@ -27,12 +36,20 @@ public class BTree<K extends Comparable<K>> {
         n.insertNotFull(key);
     }
 
+    /**
+     * Delete a key from B-Tree,if key doesn't exist in current tree,will effect nothing.
+     *
+     * @param key key to delete.
+     */
     public void delete(K key){
         AbstractBTreeNode<K> node = root;
         node.deleteNotEmpty(key);
         if (node.nkey() == 0){
             //shrink
             root = node.getChild(0);
+            if (root == null){
+                root = new BTreeLeaf<>(degree);
+            }
         }
     }
 
@@ -48,7 +65,8 @@ public class BTree<K extends Comparable<K>> {
             bTree.insert(numbers[i]);
         }
         System.out.println(bTree);
-        bTree.delete(20);
+        bTree.delete(6);
+        bTree.delete(18);
         System.out.println(bTree);
     }
 
