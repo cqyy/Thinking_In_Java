@@ -1,5 +1,7 @@
 package yuanye.mockito;
 
+import org.mockito.InOrder;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -75,5 +77,19 @@ public class MockitoDemo {
         verify(mockedList,atMost(2)).add("twice");
         verify(mockedList,atLeast(3)).add("three times");
         verify(mockedList,atMost(5)).add("three times");
+    }
+
+    //verification in order
+    static void VerifyInOrder(){
+        List<String> firstList = mock(List.class);
+        List<String> secondList = mock(List.class);
+
+        firstList.add("one");
+        secondList.add("two");
+
+        InOrder inOrder = inOrder(firstList,secondList);
+
+        inOrder.verify(firstList).add("one");
+        inOrder.verify(secondList).add("two");
     }
 }

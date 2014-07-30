@@ -34,7 +34,7 @@ public class JavaFileVistor implements FileVisitor<Path> {
     }
 
     public static void main(String... args) throws IOException {
-        Path startPath = Paths.get("src");
+        Path startPath = Paths.get(".");
         Files.walkFileTree(startPath, new JavaFileVistor());
     }
 }

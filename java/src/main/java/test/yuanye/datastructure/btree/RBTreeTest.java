@@ -1,4 +1,4 @@
-package yuanye.datastructure;
+package test.yuanye.datastructure.btree;
 
 import org.junit.Test;
 import yuanye.datastructure.rbtree.NodeColor;
