@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.Arrays;
-import java.util.HashMap;
 
 
 /**
@@ -72,10 +71,8 @@ public class CodeCount2 {
     }
 
     public static void main(String args[]){
-        HashMap<String,String> map = new HashMap<>();
-        map.put("Key1","Value1");
-        System.out.println(map.get("Key1"));
-        System.out.println(Arrays.toString("ddd ddd    ddd       ddd".split("\\s+")));
+
+        System.out.println(Arrays.toString("package yuanye.codecount;".split("\\s+")));
     }
 
 

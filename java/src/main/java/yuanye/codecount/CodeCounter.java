@@ -80,7 +80,7 @@ public class CodeCounter {
             sb.append(fullName).append("\t")
                     .append(" 注释：").append(codeCounter.comments)
                     .append(" 空行：").append(codeCounter.blanks)
-                    .append(" 代码：").append(codeCounter.comments);
+                    .append(" 代码：").append(codeCounter.codes);
             return sb.toString();
         }
     }

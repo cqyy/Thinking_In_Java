@@ -31,7 +31,7 @@ public class CodeCount {
             Files.lines(path).forEach((line) -> {
                 line = line.trim();
                 if (line.startsWith("package")) {
-                    packageName[0] = line.split("\\s+")[1];
+                    packageName[0] = line.substring("package".length(),line.length() -1);
                 }
                 if (line.length() == 0) {
                     counter.blanks++;
@@ -76,7 +76,7 @@ public class CodeCount {
 
 
     public static void main(String[] args) throws IOException {
-        Path path = Paths.get("E:\\Documents\\GitHub\\datahub\\crawlerbolt");
+        Path path = Paths.get("D:\\Documents\\GitHub\\datahub\\crawlerbolt\\");
 
         System.out.println( CodeCount.codeCount(path));
     }
