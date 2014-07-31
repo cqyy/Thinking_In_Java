@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.Arrays;
+import java.util.HashMap;
 
 
 /**
@@ -8,6 +10,8 @@ import java.io.*;
  * Time: 上午12:23
  * 进行简单的代码行数统计
  */
+
+/**ddd*/
 public class CodeCount2 {
     static long  normalLine=0;
     static long commentLine=0;
@@ -29,16 +33,20 @@ public class CodeCount2 {
                         whiteLine+=1;
                     }else if(line.startsWith("/*")&&!line.equals("*/")){
                         commentLine+=1;
+                        System.out.println(line);
                         bln=true;
                     }else if (bln==true){
                         commentLine+=1;
+                        System.out.println(line);
                         if(line.endsWith("*/")){
                             bln=false;
                         }
                     }else if(line.startsWith("/*")&&line.endsWith("*/")){
                         commentLine+=1;
+                        System.out.println(line);
                     }else if(line.startsWith("//")){
                         commentLine+=1;
+                        System.out.println(line);
                     }else {
                         normalLine+=1;
                     }
@@ -64,17 +72,10 @@ public class CodeCount2 {
     }
 
     public static void main(String args[]){
-        //读取该目录下面的 所有 .java 文件进行统计。目前没进行文件夹递归访问
-        File f=new File("E:\\Documents\\GitHub\\datahub\\crawlerbolt\\");
-        File[] files=f.listFiles();
-        for (File eachfile:files){
-            if(eachfile.getName().matches(".*\\.java$")){
-                countcode(eachfile);
-            }
-        }
-        p("注释的代码行数:"+commentLine);
-        p("空白的代码行数:"+whiteLine);
-        p("有效的代码行数:"+normalLine);
+        HashMap<String,String> map = new HashMap<>();
+        map.put("Key1","Value1");
+        System.out.println(map.get("Key1"));
+        System.out.println(Arrays.toString("ddd ddd    ddd       ddd".split("\\s+")));
     }
 
 
