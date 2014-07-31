@@ -1,4 +1,4 @@
-package yuanye.collection;
+package yuanye.datastructure.collection;
 
 import java.util.*;
 
