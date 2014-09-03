@@ -1,17 +1,13 @@
 package yuanye.hadoop.fsm;
 
-import yuanye.container.Interface;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Administrator on 2014/9/4.
  */
 public class StateMachineFactory<OPERAND,STATE extends Enum<STATE>,EVENTTYPE extends Enum<EVENTTYPE>,EVENT> {
 
-    private Map<STATE,Map<EVENTTYPE,STATE>> transitionTopology;
+    private Map<STATE,Map<EVENTTYPE,Transition<OPERAND,STATE,EVENTTYPE,EVENT>>> transitionTopology;
     private TransitionListNode listNode;
     private STATE defaultInitState;
 
@@ -71,9 +67,8 @@ public class StateMachineFactory<OPERAND,STATE extends Enum<STATE>,EVENTTYPE ext
             return next;
         }
 
+
     }
-
-
 
     private class SingleArc<OPERAND,EVENT>
             implements Transition<OPERAND,STATE,EVENTTYPE,EVENT>{
@@ -113,18 +108,40 @@ public class StateMachineFactory<OPERAND,STATE extends Enum<STATE>,EVENTTYPE ext
         }
     }
 
-    public StateMachineFactory addTransition(STATE preState,STATE postState,
+    private class InternalStateMachine implements StateMachine<STATE,EVENTTYPE,EVENT>{
+
+        private final OPERAND operand;
+        private STATE currentState;
+
+        public InternalStateMachine(OPERAND operand,STATE initState){
+            this.operand = operand;
+            this.currentState = initState;
+        }
+
+        @Override
+        public STATE getCurrentState() {
+            return currentState;
+        }
+
+        @Override
+        public STATE doTransition(EVENTTYPE eventType, EVENT event) {
+            currentState =  StateMachineFactory.this.doTransition(operand,currentState,eventType,event);
+            return currentState;
+        }
+    }
+
+    public StateMachineFactory<OPERAND,STATE,EVENTTYPE,EVENT> addTransition(STATE preState,STATE postState,
                                              Set<EVENTTYPE> eventTypes,SingleArcTransition<OPERAND,EVENT> hook){
-        StateMachineFactory factory = this;
+        StateMachineFactory<OPERAND,STATE,EVENTTYPE,EVENT> factory = this;
         for (EVENTTYPE eventType : eventTypes){
             factory = addTransition(preState,postState,eventType,hook);
         }
         return factory;
     }
 
-    public StateMachineFactory addTransition(STATE preState,STATE postState,
+    public StateMachineFactory<OPERAND,STATE,EVENTTYPE,EVENT> addTransition(STATE preState,STATE postState,
                                              EVENTTYPE eventType,SingleArcTransition<OPERAND,EVENT> hook){
-        return new StateMachineFactory(
+        return new StateMachineFactory<OPERAND,STATE,EVENTTYPE,EVENT>(
                 this,
                 new ApplicableSingleOrMutipleArcTransition<OPERAND,STATE,EVENTTYPE,EVENT>(
                         preState,
@@ -132,9 +149,9 @@ public class StateMachineFactory<OPERAND,STATE extends Enum<STATE>,EVENTTYPE ext
                         new SingleArc<OPERAND, EVENT>(postState,hook)));
     }
 
-    public StateMachineFactory addTransition(STATE preState,Set<STATE> postStates,
+    public StateMachineFactory<OPERAND,STATE,EVENTTYPE,EVENT> addTransition(STATE preState,Set<STATE> postStates,
                                              EVENTTYPE eventType,MultipleArcTransition<OPERAND,EVENT,STATE> hook){
-        return new StateMachineFactory(
+        return new StateMachineFactory<OPERAND,STATE,EVENTTYPE,EVENT>(
                 this,
                 new ApplicableSingleOrMutipleArcTransition<OPERAND,STATE,EVENTTYPE,EVENT>(
                         preState,
@@ -142,16 +159,36 @@ public class StateMachineFactory<OPERAND,STATE extends Enum<STATE>,EVENTTYPE ext
                         new MutipleArc<OPERAND, EVENT, STATE>(postStates, hook)));
     }
 
-    public StateMachineFactory addTransition(STATE preState,Set<STATE> postStates,
+    public StateMachineFactory<OPERAND,STATE,EVENTTYPE,EVENT> addTransition(STATE preState,Set<STATE> postStates,
                                              Set<EVENTTYPE> eventTypes,MultipleArcTransition<OPERAND,EVENT,STATE> hook){
-        StateMachineFactory factory = this;
+        StateMachineFactory<OPERAND,STATE,EVENTTYPE,EVENT> factory = this;
         for (EVENTTYPE eventType : eventTypes){
             factory = addTransition(preState,postStates,eventType,hook);
         }
         return factory;
     }
 
-    public StateMachineFactory installTopology(){};
+    public void installTopology(){
+        transitionTopology = new HashMap<>();
+        Stack<TransitionListNode> stack = new Stack();
+        for(TransitionListNode node = listNode; node != null; node = node.next){
+            stack.push(node);
+        }
+        while (!stack.isEmpty()){
+            stack.pop().transition.apply(this);
+        }
+    }
 
-    public StateMachine make(OPERAND operand){};
+    private STATE doTransition(OPERAND operand,STATE preState,EVENTTYPE eventType,EVENT event){
+        Map<EVENTTYPE, Transition<OPERAND,STATE,EVENTTYPE,EVENT>> map = transitionTopology.get(preState);
+        if (map != null){
+            Transition<OPERAND,STATE,EVENTTYPE,EVENT> transition = map.get(eventType);
+            return transition.doTransition(operand, preState, event, eventType);
+        }
+        throw new IllegalStateException();
+    }
+
+    public StateMachine<STATE,EVENTTYPE,EVENT> make(OPERAND operand,STATE initState){
+        return new InternalStateMachine(operand,initState);
+    };
 }

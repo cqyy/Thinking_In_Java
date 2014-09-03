@@ -89,7 +89,7 @@ public class AsyncDispatcher implements Dispatcher,Service {
                 try {
                     eventQueue.put(event);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }

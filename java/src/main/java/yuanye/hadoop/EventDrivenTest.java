@@ -129,6 +129,5 @@ public class EventDrivenTest {
         mrAppMaster.start();
         mrAppMaster.getDispatcher().getEventHandler().handle(new JobEvent(jobID, JobEventType.JOB_KILL));
         mrAppMaster.getDispatcher().getEventHandler().handle(new JobEvent(jobID, JobEventType.JOB_INIT));
-        //mrAppMaster.stop();
     }
 }
