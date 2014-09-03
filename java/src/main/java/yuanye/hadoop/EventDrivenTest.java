@@ -9,7 +9,7 @@ import yuanye.hadoop.service.CompositeServer;
 /**
  * Created by Kali on 14-9-3.
  */
-public class Test {
+public class EventDrivenTest {
 
     public static enum TaskEventType {
         T_KILL,
