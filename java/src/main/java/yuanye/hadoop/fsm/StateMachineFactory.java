@@ -1,17 +1,13 @@
 package yuanye.hadoop.fsm;
 
-import yuanye.container.Interface;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Administrator on 2014/9/4.
  */
 public class StateMachineFactory<OPERAND,STATE extends Enum<STATE>,EVENTTYPE extends Enum<EVENTTYPE>,EVENT> {
 
-    private Map<STATE,Map<EVENTTYPE,STATE>> transitionTopology;
+    private Map<STATE,Map<EVENTTYPE,Transition<OPERAND,STATE,EVENTTYPE,EVENT>>> transitionTopology;
     private TransitionListNode listNode;
     private STATE defaultInitState;
 
@@ -50,7 +46,12 @@ public class StateMachineFactory<OPERAND,STATE extends Enum<STATE>,EVENTTYPE ext
 
         @Override
         public void apply(StateMachineFactory<OPERAND, STATE, EVENTTYPE, EVENT> factory) {
-            //TODO
+            Map<EVENTTYPE,Transition<OPERAND,STATE,EVENTTYPE,EVENT>> map = factory.transitionTopology.get(preState);
+            if (map == null){
+                map = new HashMap<>();
+                factory.transitionTopology.put(preState,map);
+            }
+            map.put(eventType,transition);
         }
     }
 
@@ -72,7 +73,6 @@ public class StateMachineFactory<OPERAND,STATE extends Enum<STATE>,EVENTTYPE ext
         }
 
     }
-
 
 
     private class SingleArc<OPERAND,EVENT>
@@ -110,6 +110,28 @@ public class StateMachineFactory<OPERAND,STATE extends Enum<STATE>,EVENTTYPE ext
                 throw new IllegalStateException(state.toString());
             }
             return state;
+        }
+    }
+
+    private class InternalStateMachine implements StateMachine<STATE,EVENTTYPE,EVENT>{
+
+        private final OPERAND operand;
+        private STATE currentState;
+
+        public InternalStateMachine(OPERAND operand,STATE initState){
+            this.operand = operand;
+            this.currentState = initState;
+        }
+
+        @Override
+        public STATE getCurrentState() {
+            return currentState;
+        }
+
+        @Override
+        public STATE doTransition(EVENTTYPE eventType, EVENT event) {
+            currentState = StateMachineFactory.this.doTransition(operand,currentState,eventType,event);
+            return currentState;
         }
     }
 
@@ -151,7 +173,35 @@ public class StateMachineFactory<OPERAND,STATE extends Enum<STATE>,EVENTTYPE ext
         return factory;
     }
 
-    public StateMachineFactory installTopology(){};
+    public StateMachineFactory installTopology() {
+        Stack<ApplicableSingleOrMutipleArcTransition<OPERAND, STATE, EVENTTYPE, EVENT>> transitions = new Stack<>();
+        Map<STATE, Map<EVENTTYPE, Transition<OPERAND, STATE, EVENTTYPE, EVENT>>> prototype = new HashMap<>();
+        prototype.put(defaultInitState, null);
+        transitionTopology = new EnumMap<>(prototype);
 
-    public StateMachine make(OPERAND operand){};
+        for (TransitionListNode node = listNode;
+             node != null;
+             node = node.next()) {
+            transitions.push(node.transition);
+        }
+        while (!transitions.isEmpty()) {
+            transitions.pop().apply(this);
+        }
+        return this;
+    }
+
+    private STATE doTransition(OPERAND operand, STATE oldState, EVENTTYPE eventType, EVENT event){
+        Map<EVENTTYPE,Transition<OPERAND,STATE,EVENTTYPE,EVENT>> map = transitionTopology.get(oldState);
+        if (map != null){
+            Transition<OPERAND,STATE,EVENTTYPE,EVENT> transition = map.get(eventType);
+           if (transition != null){
+               return transition.doTransition(operand,oldState,event,eventType);
+           }
+        }
+        throw new IllegalStateException(oldState.toString());
+    }
+
+    public StateMachine make(OPERAND operand){
+        return new InternalStateMachine(operand,defaultInitState);
+    }
 }
