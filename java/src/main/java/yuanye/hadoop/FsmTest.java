@@ -71,8 +71,8 @@ public class FsmTest {
                         .addTransition(JobState.JOB_STARTED, JobState.JOB_RUNNING,
                                 JobEventType.RUN, new RunJobTransition())
                         //from JOB_RUNNING
-                        .addTransition(JobState.JOB_RUNNING, JobState.JOB_COMPLITTED, JobEventType.COMPLETE, new CompletingTransition());
-        stateMachineFactory.installTopology();
+                        .addTransition(JobState.JOB_RUNNING, JobState.JOB_COMPLITTED,                                JobEventType.COMPLETE, new CompletingTransition())
+                        .installTopology();
         Job job = new Job("Test Job");
         StateMachine<JobState, JobEventType, JobEvent> stateMachine =
                 stateMachineFactory.make(job, JobState.JOB_NEW);

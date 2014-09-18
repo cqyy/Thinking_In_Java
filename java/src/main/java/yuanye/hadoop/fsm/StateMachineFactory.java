@@ -46,7 +46,12 @@ public class StateMachineFactory<OPERAND,STATE extends Enum<STATE>,EVENTTYPE ext
 
         @Override
         public void apply(StateMachineFactory<OPERAND, STATE, EVENTTYPE, EVENT> factory) {
-            //TODO
+            Map<EVENTTYPE,Transition<OPERAND,STATE,EVENTTYPE,EVENT>> map = factory.transitionTopology.get(preState);
+            if (map == null){
+                map = new HashMap<>();
+                factory.transitionTopology.put(preState,map);
+            }
+            map.put(eventType,transition);
         }
     }
 
@@ -168,27 +173,40 @@ public class StateMachineFactory<OPERAND,STATE extends Enum<STATE>,EVENTTYPE ext
         return factory;
     }
 
-    public void installTopology(){
-        transitionTopology = new HashMap<>();
-        Stack<TransitionListNode> stack = new Stack();
-        for(TransitionListNode node = listNode; node != null; node = node.next){
-            stack.push(node);
-        }
-        while (!stack.isEmpty()){
-            stack.pop().transition.apply(this);
-        }
-    }
-
-    private STATE doTransition(OPERAND operand,STATE preState,EVENTTYPE eventType,EVENT event){
-        Map<EVENTTYPE, Transition<OPERAND,STATE,EVENTTYPE,EVENT>> map = transitionTopology.get(preState);
-        if (map != null){
-            Transition<OPERAND,STATE,EVENTTYPE,EVENT> transition = map.get(eventType);
-            return transition.doTransition(operand, preState, event, eventType);
-        }
-        throw new IllegalStateException();
-    }
 
     public StateMachine<STATE,EVENTTYPE,EVENT> make(OPERAND operand,STATE initState){
         return new InternalStateMachine(operand,initState);
     };
+
+    public StateMachineFactory<OPERAND,STATE,EVENTTYPE,EVENT> installTopology() {
+        Stack<ApplicableSingleOrMutipleArcTransition<OPERAND, STATE, EVENTTYPE, EVENT>> transitions = new Stack<>();
+        Map<STATE, Map<EVENTTYPE, Transition<OPERAND, STATE, EVENTTYPE, EVENT>>> prototype = new HashMap<>();
+        prototype.put(defaultInitState, null);
+        transitionTopology = new EnumMap<>(prototype);
+
+        for (TransitionListNode node = listNode;
+             node != null;
+             node = node.next()) {
+            transitions.push(node.transition);
+        }
+        while (!transitions.isEmpty()) {
+            transitions.pop().apply(this);
+        }
+        return this;
+    }
+
+    private STATE doTransition(OPERAND operand, STATE oldState, EVENTTYPE eventType, EVENT event){
+        Map<EVENTTYPE,Transition<OPERAND,STATE,EVENTTYPE,EVENT>> map = transitionTopology.get(oldState);
+        if (map != null){
+            Transition<OPERAND,STATE,EVENTTYPE,EVENT> transition = map.get(eventType);
+           if (transition != null){
+               return transition.doTransition(operand,oldState,event,eventType);
+           }
+        }
+        throw new IllegalStateException(oldState.toString());
+    }
+
+    public StateMachine make(OPERAND operand){
+        return new InternalStateMachine(operand,defaultInitState);
+    }
 }
