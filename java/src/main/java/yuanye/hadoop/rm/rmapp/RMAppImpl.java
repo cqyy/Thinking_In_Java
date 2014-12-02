@@ -1,7 +1,7 @@
 package yuanye.hadoop.rm.rmapp;
 
 import yuanye.hadoop.event.EventHandler;
-import yuanye.hadoop.rm.rmapp.rmappattempt.RMAppAttempt;
+import yuanye.hadoop.rm.rmapp.attempt.RMAppAttempt;
 
 import java.util.Map;
 

@@ -1,7 +1,7 @@
 package yuanye.hadoop.rm.rmapp;
 
 import yuanye.hadoop.event.AbstractEvent;
-import yuanye.hadoop.rm.rmapp.rmappattempt.RMAppEventType;
+import yuanye.hadoop.rm.rmapp.attempt.RMAppEventType;
 
 /**
  * Created by Kali on 9/17/14.
