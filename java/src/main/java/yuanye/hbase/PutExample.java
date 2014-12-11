@@ -1,7 +1,6 @@
 package yuanye.hbase;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.HTable;
 import org.apache.hadoop.hbase.client.Put;
@@ -16,7 +15,7 @@ public class PutExample {
 
     public static void main(String[] args) throws IOException {
 
-        HBaseConfiguration conf = new HBaseConfiguration();
+        Configuration conf = HBaseConfiguration.create();
        // conf.addResource(new Path("./hbase-site.xml"));
 
         HTable htable = new HTable(conf,"testtable");

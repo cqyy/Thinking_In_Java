@@ -2,11 +2,8 @@ package yuanye.hadoop.rm.rmapp;
 
 import yuanye.hadoop.event.Dispatcher;
 import yuanye.hadoop.event.EventHandler;
-<<<<<<< HEAD
-=======
 import yuanye.hadoop.fsm.SingleArcTransition;
 import yuanye.hadoop.fsm.StateMachineFactory;
->>>>>>> b0552bb38ad7f6dbd87da6328e6d5afab9ccab55
 import yuanye.hadoop.rm.rmapp.attempt.RMAppAttempt;
 
 import java.util.HashSet;
