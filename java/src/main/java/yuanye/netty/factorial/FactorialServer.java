@@ -51,11 +51,9 @@ public final class FactorialServer {
                     .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new FactorialServerInitializer(sslCtx));
-
             b.bind(PORT).sync().channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();
-            workerGroup.shutdownGracefully();
-        }
+            workerGroup.shutdownGracefully(); }
     }
 }

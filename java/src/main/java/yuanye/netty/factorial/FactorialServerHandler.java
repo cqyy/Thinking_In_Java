@@ -16,9 +16,9 @@
 package yuanye.netty.factorial;
 
 import io.netty.channel.ChannelHandlerContext;
-        import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.SimpleChannelInboundHandler;
 
-        import java.math.BigInteger;
+import java.math.BigInteger;
 
 /**
  * Handler for a server-side channel.  This handler maintains stateful
